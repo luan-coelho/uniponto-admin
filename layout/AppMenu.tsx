@@ -11,6 +11,10 @@ const AppMenu = () => {
 
     const model: AppMenuItem[] = [
         {
+            label: 'Eventos',
+            items: [{ label: 'Listagem', icon: 'pi pi-fw pi-sun', to: '/event' }],
+        },
+        {
             label: 'Home',
             items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/' }],
         },

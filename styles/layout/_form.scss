@@ -1,0 +1,12 @@
+.field {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+.field-error-message {
+    font-weight: 300;
+    font-size: 1em;
+    color: red;
+    margin-top: 0.3em;
+}

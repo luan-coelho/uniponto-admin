@@ -1,0 +1,36 @@
+.fixed-element {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  
+    z-index: 50;
+  
+    backdrop-filter: brightness(90%);
+  
+    &[data-state="open"] {
+      @keyframes animate-in {
+      }
+      animation: animate-in 1s ease-in-out;
+  
+      transition: opacity 0.5s ease-in-out;
+      opacity: 1;
+    }
+    
+    &[data-state="closed"] {
+      @keyframes animate-out {
+      }
+      animation: animate-out 1s ease-in-out;
+  
+      transition: opacity 0.5s ease-in-out;
+      opacity: 0;
+    }
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
