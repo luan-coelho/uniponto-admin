@@ -1,12 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
-import { useRouter } from "next/navigation";
-import {
-  useEventListener,
-  useMountEffect,
-  useUnmountEffect,
-} from "primereact/hooks";
+import { useEventListener, useMountEffect, useUnmountEffect } from "primereact/hooks";
 import React, { useContext, useEffect, useRef } from "react";
 import { classNames } from "primereact/utils";
 import AppFooter from "./AppFooter";
@@ -18,28 +13,26 @@ import { PrimeReactContext } from "primereact/api";
 import { ChildContainerProps, LayoutState, AppTopbarRef } from "../types/types";
 import { usePathname, useSearchParams } from "next/navigation";
 
-
 const Layout = ({ children }: ChildContainerProps) => {
   const { layoutConfig, layoutState, setLayoutState } = useContext(LayoutContext);
   const { setRipple } = useContext(PrimeReactContext);
   const topbarRef = useRef<AppTopbarRef>(null);
   const sidebarRef = useRef<HTMLDivElement>(null);
-  const [bindMenuOutsideClickListener, unbindMenuOutsideClickListener] =
-    useEventListener({
-      type: "click",
-      listener: (event) => {
-        const isOutsideClicked = !(
-          sidebarRef.current?.isSameNode(event.target as Node) ||
-          sidebarRef.current?.contains(event.target as Node) ||
-          topbarRef.current?.menubutton?.isSameNode(event.target as Node) ||
-          topbarRef.current?.menubutton?.contains(event.target as Node)
-        );
+  const [bindMenuOutsideClickListener, unbindMenuOutsideClickListener] = useEventListener({
+    type: "click",
+    listener: event => {
+      const isOutsideClicked = !(
+        sidebarRef.current?.isSameNode(event.target as Node) ||
+        sidebarRef.current?.contains(event.target as Node) ||
+        topbarRef.current?.menubutton?.isSameNode(event.target as Node) ||
+        topbarRef.current?.menubutton?.contains(event.target as Node)
+      );
 
-        if (isOutsideClicked) {
-          hideMenu();
-        }
-      },
-    });
+      if (isOutsideClicked) {
+        hideMenu();
+      }
+    },
+  });
 
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -48,12 +41,9 @@ const Layout = ({ children }: ChildContainerProps) => {
     hideProfileMenu();
   }, [pathname, searchParams]);
 
-  const [
-    bindProfileMenuOutsideClickListener,
-    unbindProfileMenuOutsideClickListener,
-  ] = useEventListener({
+  const [bindProfileMenuOutsideClickListener, unbindProfileMenuOutsideClickListener] = useEventListener({
     type: "click",
-    listener: (event) => {
+    listener: event => {
       const isOutsideClicked = !(
         topbarRef.current?.topbarmenu?.isSameNode(event.target as Node) ||
         topbarRef.current?.topbarmenu?.contains(event.target as Node) ||
@@ -99,11 +89,8 @@ const Layout = ({ children }: ChildContainerProps) => {
       document.body.classList.remove("blocked-scroll");
     } else {
       document.body.className = document.body.className.replace(
-        new RegExp(
-          "(^|\\b)" + "blocked-scroll".split(" ").join("|") + "(\\b|$)",
-          "gi"
-        ),
-        " "
+        new RegExp("(^|\\b)" + "blocked-scroll".split(" ").join("|") + "(\\b|$)", "gi"),
+        " ",
       );
     }
   };
@@ -134,9 +121,7 @@ const Layout = ({ children }: ChildContainerProps) => {
   const containerClass = classNames("layout-wrapper", {
     "layout-overlay": layoutConfig.menuMode === "overlay",
     "layout-static": layoutConfig.menuMode === "static",
-    "layout-static-inactive":
-      layoutState.staticMenuDesktopInactive &&
-      layoutConfig.menuMode === "static",
+    "layout-static-inactive": layoutState.staticMenuDesktopInactive && layoutConfig.menuMode === "static",
     "layout-overlay-active": layoutState.overlayMenuActive,
     "layout-mobile-active": layoutState.staticMenuMobileActive,
     "p-input-filled": layoutConfig.inputStyle === "filled",
@@ -144,10 +129,12 @@ const Layout = ({ children }: ChildContainerProps) => {
   });
 
   return (
-    <React.Fragment>
+    <>
       <div className={containerClass}>
         <AppTopbar ref={topbarRef} />
-        <div ref={sidebarRef} className="layout-sidebar">
+        <div
+          ref={sidebarRef}
+          className="layout-sidebar">
           <AppSidebar />
         </div>
         <div className="layout-main-container">
@@ -157,7 +144,7 @@ const Layout = ({ children }: ChildContainerProps) => {
         <AppConfig />
         <div className="layout-mask"></div>
       </div>
-    </React.Fragment>
+    </>
   );
 };
 
