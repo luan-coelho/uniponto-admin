@@ -1,22 +1,38 @@
+import { InputMask, InputMaskProps } from 'primereact/inputmask';
 import { InputText, InputTextProps } from 'primereact/inputtext';
 import { useFormContext } from 'react-hook-form';
 
-interface InputProps extends InputTextProps {
+type TextFieldMaskProps = InputMaskProps & {
     name: string;
-}
+    mask?: string;
+};
 
-export function TextField(props: InputProps) {
+type TextFieldProps = InputTextProps & TextFieldMaskProps;
+
+export function TextField(props: TextFieldProps) {
     const {
         register,
         formState: { errors },
     } = useFormContext();
 
     return (
-        <InputText
-            id={props.name}
-            {...register(props.name)}
-            {...props}
-            className={errors[props.name] ? 'p-invalid' : ''}
-        />
+        <>
+            {'mask' in props ? (
+                <InputMask
+                    id={props.name}
+                    {...register(props.name)}
+                    {...props}
+                    mask={props.mask}
+                    className={errors[props.name] ? 'p-invalid' : ''}
+                />
+            ) : (
+                <InputText
+                    id={props.name}
+                    {...register(props.name)}
+                    {...props}
+                    className={errors[props.name] ? 'p-invalid' : ''}
+                />
+            )}
+        </>
     );
 }
