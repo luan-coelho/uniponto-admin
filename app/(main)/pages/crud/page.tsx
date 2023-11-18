@@ -28,7 +28,7 @@ const Crud = () => {
         price: 0,
         quantity: 0,
         rating: 0,
-        inventoryStatus: 'INSTOCK'
+        inventoryStatus: 'INSTOCK',
     };
 
     const [products, setProducts] = useState(null);
@@ -43,13 +43,13 @@ const Crud = () => {
     const dt = useRef<DataTable<any>>(null);
 
     useEffect(() => {
-        ProductService.getProducts().then((data) => setProducts(data as any));
+        ProductService.getProducts().then(data => setProducts(data as any));
     }, []);
 
     const formatCurrency = (value: number) => {
         return value.toLocaleString('en-US', {
             style: 'currency',
-            currency: 'USD'
+            currency: 'USD',
         });
     };
 
@@ -86,7 +86,7 @@ const Crud = () => {
                     severity: 'success',
                     summary: 'Successful',
                     detail: 'Product Updated',
-                    life: 3000
+                    life: 3000,
                 });
             } else {
                 _product.id = createId();
@@ -96,7 +96,7 @@ const Crud = () => {
                     severity: 'success',
                     summary: 'Successful',
                     detail: 'Product Created',
-                    life: 3000
+                    life: 3000,
                 });
             }
 
@@ -125,7 +125,7 @@ const Crud = () => {
             severity: 'success',
             summary: 'Successful',
             detail: 'Product Deleted',
-            life: 3000
+            life: 3000,
         });
     };
 
@@ -167,7 +167,7 @@ const Crud = () => {
             severity: 'success',
             summary: 'Successful',
             detail: 'Products Deleted',
-            life: 3000
+            life: 3000,
         });
     };
 
@@ -197,8 +197,20 @@ const Crud = () => {
         return (
             <React.Fragment>
                 <div className="my-2">
-                    <Button label="New" icon="pi pi-plus" severity="success" className=" mr-2" onClick={openNew} />
-                    <Button label="Delete" icon="pi pi-trash" severity="danger" onClick={confirmDeleteSelected} disabled={!selectedProducts || !(selectedProducts as any).length} />
+                    <Button
+                        label="New"
+                        icon="pi pi-plus"
+                        severity="success"
+                        className=" mr-2"
+                        onClick={openNew}
+                    />
+                    <Button
+                        label="Delete"
+                        icon="pi pi-trash"
+                        severity="danger"
+                        onClick={confirmDeleteSelected}
+                        disabled={!selectedProducts || !(selectedProducts as any).length}
+                    />
                 </div>
             </React.Fragment>
         );
@@ -207,8 +219,19 @@ const Crud = () => {
     const rightToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <FileUpload mode="basic" accept="image/*" maxFileSize={1000000} chooseLabel="Import" className="mr-2 inline-block" />
-                <Button label="Export" icon="pi pi-upload" severity="help" onClick={exportCSV} />
+                <FileUpload
+                    mode="basic"
+                    accept="image/*"
+                    maxFileSize={1000000}
+                    chooseLabel="Import"
+                    className="mr-2 inline-block"
+                />
+                <Button
+                    label="Export"
+                    icon="pi pi-upload"
+                    severity="help"
+                    onClick={exportCSV}
+                />
             </React.Fragment>
         );
     };
@@ -235,7 +258,12 @@ const Crud = () => {
         return (
             <>
                 <span className="p-column-title">Image</span>
-                <img src={`/demo/images/product/${rowData.image}`} alt={rowData.image} className="shadow-2" width="100" />
+                <img
+                    src={`/demo/images/product/${rowData.image}`}
+                    alt={rowData.image}
+                    className="shadow-2"
+                    width="100"
+                />
             </>
         );
     };
@@ -262,7 +290,11 @@ const Crud = () => {
         return (
             <>
                 <span className="p-column-title">Reviews</span>
-                <Rating value={rowData.rating} readOnly cancel={false} />
+                <Rating
+                    value={rowData.rating}
+                    readOnly
+                    cancel={false}
+                />
             </>
         );
     };
@@ -271,7 +303,9 @@ const Crud = () => {
         return (
             <>
                 <span className="p-column-title">Status</span>
-                <span className={`product-badge status-${rowData.inventoryStatus?.toLowerCase()}`}>{rowData.inventoryStatus}</span>
+                <span className={`product-badge status-${rowData.inventoryStatus?.toLowerCase()}`}>
+                    {rowData.inventoryStatus}
+                </span>
             </>
         );
     };
@@ -279,8 +313,19 @@ const Crud = () => {
     const actionBodyTemplate = (rowData: Demo.Product) => {
         return (
             <>
-                <Button icon="pi pi-pencil" rounded severity="success" className="mr-2" onClick={() => editProduct(rowData)} />
-                <Button icon="pi pi-trash" rounded severity="warning" onClick={() => confirmDeleteProduct(rowData)} />
+                <Button
+                    icon="pi pi-pencil"
+                    rounded
+                    severity="success"
+                    className="mr-2"
+                    onClick={() => editProduct(rowData)}
+                />
+                <Button
+                    icon="pi pi-trash"
+                    rounded
+                    severity="warning"
+                    onClick={() => confirmDeleteProduct(rowData)}
+                />
             </>
         );
     };
@@ -290,27 +335,61 @@ const Crud = () => {
             <h5 className="m-0">Manage Products</h5>
             <span className="block mt-2 md:mt-0 p-input-icon-left">
                 <i className="pi pi-search" />
-                <InputText type="search" onInput={(e) => setGlobalFilter(e.currentTarget.value)} placeholder="Search..." />
+                <InputText
+                    type="search"
+                    onInput={e => setGlobalFilter(e.currentTarget.value)}
+                    placeholder="Search..."
+                />
             </span>
         </div>
     );
 
     const productDialogFooter = (
         <>
-            <Button label="Cancel" icon="pi pi-times" text onClick={hideDialog} />
-            <Button label="Save" icon="pi pi-check" text onClick={saveProduct} />
+            <Button
+                label="Cancel"
+                icon="pi pi-times"
+                text
+                onClick={hideDialog}
+            />
+            <Button
+                label="Save"
+                icon="pi pi-check"
+                text
+                onClick={saveProduct}
+            />
         </>
     );
     const deleteProductDialogFooter = (
         <>
-            <Button label="No" icon="pi pi-times" text onClick={hideDeleteProductDialog} />
-            <Button label="Yes" icon="pi pi-check" text onClick={deleteProduct} />
+            <Button
+                label="No"
+                icon="pi pi-times"
+                text
+                onClick={hideDeleteProductDialog}
+            />
+            <Button
+                label="Yes"
+                icon="pi pi-check"
+                text
+                onClick={deleteProduct}
+            />
         </>
     );
     const deleteProductsDialogFooter = (
         <>
-            <Button label="No" icon="pi pi-times" text onClick={hideDeleteProductsDialog} />
-            <Button label="Yes" icon="pi pi-check" text onClick={deleteSelectedProducts} />
+            <Button
+                label="No"
+                icon="pi pi-times"
+                text
+                onClick={hideDeleteProductsDialog}
+            />
+            <Button
+                label="Yes"
+                icon="pi pi-check"
+                text
+                onClick={deleteSelectedProducts}
+            />
         </>
     );
 
@@ -319,13 +398,16 @@ const Crud = () => {
             <div className="col-12">
                 <div className="card">
                     <Toast ref={toast} />
-                    <Toolbar className="mb-4" left={leftToolbarTemplate} right={rightToolbarTemplate}></Toolbar>
+                    <Toolbar
+                        className="mb-4"
+                        left={leftToolbarTemplate}
+                        right={rightToolbarTemplate}></Toolbar>
 
                     <DataTable
                         ref={dt}
                         value={products}
                         selection={selectedProducts}
-                        onSelectionChange={(e) => setSelectedProducts(e.value as any)}
+                        onSelectionChange={e => setSelectedProducts(e.value as any)}
                         dataKey="id"
                         paginator
                         rows={10}
@@ -336,57 +418,135 @@ const Crud = () => {
                         globalFilter={globalFilter}
                         emptyMessage="No products found."
                         header={header}
-                        responsiveLayout="scroll"
-                    >
-                        <Column selectionMode="multiple" headerStyle={{ width: '4rem' }}></Column>
-                        <Column field="code" header="Code" sortable body={codeBodyTemplate} headerStyle={{ minWidth: '15rem' }}></Column>
-                        <Column field="name" header="Name" sortable body={nameBodyTemplate} headerStyle={{ minWidth: '15rem' }}></Column>
-                        <Column header="Image" body={imageBodyTemplate}></Column>
-                        <Column field="price" header="Price" body={priceBodyTemplate} sortable></Column>
-                        <Column field="category" header="Category" sortable body={categoryBodyTemplate} headerStyle={{ minWidth: '10rem' }}></Column>
-                        <Column field="rating" header="Reviews" body={ratingBodyTemplate} sortable></Column>
-                        <Column field="inventoryStatus" header="Status" body={statusBodyTemplate} sortable headerStyle={{ minWidth: '10rem' }}></Column>
-                        <Column body={actionBodyTemplate} headerStyle={{ minWidth: '10rem' }}></Column>
+                        responsiveLayout="scroll">
+                        <Column
+                            selectionMode="multiple"
+                            headerStyle={{ width: '4rem' }}></Column>
+                        <Column
+                            field="code"
+                            header="Code"
+                            sortable
+                            body={codeBodyTemplate}
+                            headerStyle={{ minWidth: '15rem' }}></Column>
+                        <Column
+                            field="name"
+                            header="Name"
+                            sortable
+                            body={nameBodyTemplate}
+                            headerStyle={{ minWidth: '15rem' }}></Column>
+                        <Column
+                            header="Image"
+                            body={imageBodyTemplate}></Column>
+                        <Column
+                            field="price"
+                            header="Price"
+                            body={priceBodyTemplate}
+                            sortable></Column>
+                        <Column
+                            field="category"
+                            header="Category"
+                            sortable
+                            body={categoryBodyTemplate}
+                            headerStyle={{ minWidth: '10rem' }}></Column>
+                        <Column
+                            field="rating"
+                            header="Reviews"
+                            body={ratingBodyTemplate}
+                            sortable></Column>
+                        <Column
+                            field="inventoryStatus"
+                            header="Status"
+                            body={statusBodyTemplate}
+                            sortable
+                            headerStyle={{ minWidth: '10rem' }}></Column>
+                        <Column
+                            body={actionBodyTemplate}
+                            headerStyle={{ minWidth: '10rem' }}></Column>
                     </DataTable>
 
-                    <Dialog visible={productDialog} style={{ width: '450px' }} header="Product Details" modal className="p-fluid" footer={productDialogFooter} onHide={hideDialog}>
-                        {product.image && <img src={`/demo/images/product/${product.image}`} alt={product.image} width="150" className="mt-0 mx-auto mb-5 block shadow-2" />}
+                    <Dialog
+                        visible={productDialog}
+                        style={{ width: '450px' }}
+                        header="Product Details"
+                        modal
+                        className="p-fluid"
+                        footer={productDialogFooter}
+                        onHide={hideDialog}>
+                        {product.image && (
+                            <img
+                                src={`/demo/images/product/${product.image}`}
+                                alt={product.image}
+                                width="150"
+                                className="mt-0 mx-auto mb-5 block shadow-2"
+                            />
+                        )}
                         <div className="field">
                             <label htmlFor="name">Name</label>
                             <InputText
                                 id="name"
                                 value={product.name}
-                                onChange={(e) => onInputChange(e, 'name')}
+                                onChange={e => onInputChange(e, 'name')}
                                 required
                                 autoFocus
                                 className={classNames({
-                                    'p-invalid': submitted && !product.name
+                                    'p-invalid': submitted && !product.name,
                                 })}
                             />
                             {submitted && !product.name && <small className="p-invalid">Name is required.</small>}
                         </div>
                         <div className="field">
                             <label htmlFor="description">Description</label>
-                            <InputTextarea id="description" value={product.description} onChange={(e) => onInputChange(e, 'description')} required rows={3} cols={20} />
+                            <InputTextarea
+                                id="description"
+                                value={product.description}
+                                onChange={e => onInputChange(e, 'description')}
+                                required
+                                rows={3}
+                                cols={20}
+                            />
                         </div>
 
                         <div className="field">
                             <label className="mb-3">Category</label>
                             <div className="formgrid grid">
                                 <div className="field-radiobutton col-6">
-                                    <RadioButton inputId="category1" name="category" value="Accessories" onChange={onCategoryChange} checked={product.category === 'Accessories'} />
+                                    <RadioButton
+                                        inputId="category1"
+                                        name="category"
+                                        value="Accessories"
+                                        onChange={onCategoryChange}
+                                        checked={product.category === 'Accessories'}
+                                    />
                                     <label htmlFor="category1">Accessories</label>
                                 </div>
                                 <div className="field-radiobutton col-6">
-                                    <RadioButton inputId="category2" name="category" value="Clothing" onChange={onCategoryChange} checked={product.category === 'Clothing'} />
+                                    <RadioButton
+                                        inputId="category2"
+                                        name="category"
+                                        value="Clothing"
+                                        onChange={onCategoryChange}
+                                        checked={product.category === 'Clothing'}
+                                    />
                                     <label htmlFor="category2">Clothing</label>
                                 </div>
                                 <div className="field-radiobutton col-6">
-                                    <RadioButton inputId="category3" name="category" value="Electronics" onChange={onCategoryChange} checked={product.category === 'Electronics'} />
+                                    <RadioButton
+                                        inputId="category3"
+                                        name="category"
+                                        value="Electronics"
+                                        onChange={onCategoryChange}
+                                        checked={product.category === 'Electronics'}
+                                    />
                                     <label htmlFor="category3">Electronics</label>
                                 </div>
                                 <div className="field-radiobutton col-6">
-                                    <RadioButton inputId="category4" name="category" value="Fitness" onChange={onCategoryChange} checked={product.category === 'Fitness'} />
+                                    <RadioButton
+                                        inputId="category4"
+                                        name="category"
+                                        value="Fitness"
+                                        onChange={onCategoryChange}
+                                        checked={product.category === 'Fitness'}
+                                    />
                                     <label htmlFor="category4">Fitness</label>
                                 </div>
                             </div>
@@ -395,18 +555,38 @@ const Crud = () => {
                         <div className="formgrid grid">
                             <div className="field col">
                                 <label htmlFor="price">Price</label>
-                                <InputNumber id="price" value={product.price} onValueChange={(e) => onInputNumberChange(e, 'price')} mode="currency" currency="USD" locale="en-US" />
+                                <InputNumber
+                                    id="price"
+                                    value={product.price}
+                                    onValueChange={e => onInputNumberChange(e, 'price')}
+                                    mode="currency"
+                                    currency="USD"
+                                    locale="en-US"
+                                />
                             </div>
                             <div className="field col">
                                 <label htmlFor="quantity">Quantity</label>
-                                <InputNumber id="quantity" value={product.quantity} onValueChange={(e) => onInputNumberChange(e, 'quantity')} />
+                                <InputNumber
+                                    id="quantity"
+                                    value={product.quantity}
+                                    onValueChange={e => onInputNumberChange(e, 'quantity')}
+                                />
                             </div>
                         </div>
                     </Dialog>
 
-                    <Dialog visible={deleteProductDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteProductDialogFooter} onHide={hideDeleteProductDialog}>
+                    <Dialog
+                        visible={deleteProductDialog}
+                        style={{ width: '450px' }}
+                        header="Confirm"
+                        modal
+                        footer={deleteProductDialogFooter}
+                        onHide={hideDeleteProductDialog}>
                         <div className="flex align-items-center justify-content-center">
-                            <i className="pi pi-exclamation-triangle mr-3" style={{ fontSize: '2rem' }} />
+                            <i
+                                className="pi pi-exclamation-triangle mr-3"
+                                style={{ fontSize: '2rem' }}
+                            />
                             {product && (
                                 <span>
                                     Are you sure you want to delete <b>{product.name}</b>?
@@ -415,9 +595,18 @@ const Crud = () => {
                         </div>
                     </Dialog>
 
-                    <Dialog visible={deleteProductsDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteProductsDialogFooter} onHide={hideDeleteProductsDialog}>
+                    <Dialog
+                        visible={deleteProductsDialog}
+                        style={{ width: '450px' }}
+                        header="Confirm"
+                        modal
+                        footer={deleteProductsDialogFooter}
+                        onHide={hideDeleteProductsDialog}>
                         <div className="flex align-items-center justify-content-center">
-                            <i className="pi pi-exclamation-triangle mr-3" style={{ fontSize: '2rem' }} />
+                            <i
+                                className="pi pi-exclamation-triangle mr-3"
+                                style={{ fontSize: '2rem' }}
+                            />
                             {product && <span>Are you sure you want to delete the selected products?</span>}
                         </div>
                     </Dialog>

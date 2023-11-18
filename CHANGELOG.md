@@ -10,23 +10,23 @@
 
 ## 9.1.2
 
-- Refactored project files
+-   Refactored project files
 
 ## 9.1.1
 
-- Fixed hydration warnings
+-   Fixed hydration warnings
 
 ## 9.1.0
 
-- Add typescript support
+-   Add typescript support
 
 ## 9.0.0
 
-- Upgrade PrimeReact to v9
-- Upgrade to PrimeReact 9.2.2
-- Upgrade to PrimeFlex 3.3.0
-- Upgrade to Next 13.2.3
-- Update other dependencies
+-   Upgrade PrimeReact to v9
+-   Upgrade to PrimeReact 9.2.2
+-   Upgrade to PrimeFlex 3.3.0
+-   Upgrade to Next 13.2.3
+-   Update other dependencies
 
 ## 8.1.0
 

@@ -8,7 +8,7 @@ export const MenuProvider = ({ children }: ChildContainerProps) => {
 
     const value = {
         activeMenu,
-        setActiveMenu
+        setActiveMenu,
     };
 
     return <MenuContext.Provider value={value}>{children}</MenuContext.Provider>;

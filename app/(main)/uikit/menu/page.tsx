@@ -55,19 +55,19 @@ const MenuDemo = ({ children }: any) => {
                     items: [
                         {
                             label: 'Customer',
-                            icon: 'pi pi-fw pi-plus'
+                            icon: 'pi pi-fw pi-plus',
                         },
                         {
                             label: 'Duplicate',
-                            icon: 'pi pi-fw pi-copy'
-                        }
-                    ]
+                            icon: 'pi pi-fw pi-copy',
+                        },
+                    ],
                 },
                 {
                     label: 'Edit',
-                    icon: 'pi pi-fw pi-user-edit'
-                }
-            ]
+                    icon: 'pi pi-fw pi-user-edit',
+                },
+            ],
         },
         {
             label: 'Orders',
@@ -75,13 +75,13 @@ const MenuDemo = ({ children }: any) => {
             items: [
                 {
                     label: 'View',
-                    icon: 'pi pi-fw pi-list'
+                    icon: 'pi pi-fw pi-list',
                 },
                 {
                     label: 'Search',
-                    icon: 'pi pi-fw pi-search'
-                }
-            ]
+                    icon: 'pi pi-fw pi-search',
+                },
+            ],
         },
         {
             label: 'Shipments',
@@ -89,17 +89,17 @@ const MenuDemo = ({ children }: any) => {
             items: [
                 {
                     label: 'Tracker',
-                    icon: 'pi pi-fw pi-compass'
+                    icon: 'pi pi-fw pi-compass',
                 },
                 {
                     label: 'Map',
-                    icon: 'pi pi-fw pi-map-marker'
+                    icon: 'pi pi-fw pi-map-marker',
                 },
                 {
                     label: 'Manage',
-                    icon: 'pi pi-fw pi-pencil'
-                }
-            ]
+                    icon: 'pi pi-fw pi-pencil',
+                },
+            ],
         },
         {
             label: 'Profile',
@@ -107,22 +107,28 @@ const MenuDemo = ({ children }: any) => {
             items: [
                 {
                     label: 'Settings',
-                    icon: 'pi pi-fw pi-cog'
+                    icon: 'pi pi-fw pi-cog',
                 },
                 {
                     label: 'Billing',
-                    icon: 'pi pi-fw pi-file'
-                }
-            ]
+                    icon: 'pi pi-fw pi-file',
+                },
+            ],
         },
         {
             label: 'Quit',
-            icon: 'pi pi-fw pi-sign-out'
-        }
+            icon: 'pi pi-fw pi-sign-out',
+        },
     ];
 
     const breadcrumbHome = { icon: 'pi pi-home', to: '/' };
-    const breadcrumbItems = [{ label: 'Computer' }, { label: 'Notebook' }, { label: 'Accessories' }, { label: 'Backpacks' }, { label: 'Item' }];
+    const breadcrumbItems = [
+        { label: 'Computer' },
+        { label: 'Notebook' },
+        { label: 'Accessories' },
+        { label: 'Backpacks' },
+        { label: 'Item' },
+    ];
 
     const wizardItems = [
         { label: 'Personal', command: () => router.push('/uikit/menu') },
@@ -130,8 +136,8 @@ const MenuDemo = ({ children }: any) => {
         { label: 'Payment', command: () => router.push('/uikit/menu/payment') },
         {
             label: 'Confirmation',
-            command: () => router.push('/uikit/menu/confirmation')
-        }
+            command: () => router.push('/uikit/menu/confirmation'),
+        },
     ];
 
     const tieredMenuItems = [
@@ -145,19 +151,19 @@ const MenuDemo = ({ children }: any) => {
                     items: [
                         {
                             label: 'Customer',
-                            icon: 'pi pi-fw pi-plus'
+                            icon: 'pi pi-fw pi-plus',
                         },
                         {
                             label: 'Duplicate',
-                            icon: 'pi pi-fw pi-copy'
-                        }
-                    ]
+                            icon: 'pi pi-fw pi-copy',
+                        },
+                    ],
                 },
                 {
                     label: 'Edit',
-                    icon: 'pi pi-fw pi-user-edit'
-                }
-            ]
+                    icon: 'pi pi-fw pi-user-edit',
+                },
+            ],
         },
         {
             label: 'Orders',
@@ -165,13 +171,13 @@ const MenuDemo = ({ children }: any) => {
             items: [
                 {
                     label: 'View',
-                    icon: 'pi pi-fw pi-list'
+                    icon: 'pi pi-fw pi-list',
                 },
                 {
                     label: 'Search',
-                    icon: 'pi pi-fw pi-search'
-                }
-            ]
+                    icon: 'pi pi-fw pi-search',
+                },
+            ],
         },
         {
             label: 'Shipments',
@@ -179,17 +185,17 @@ const MenuDemo = ({ children }: any) => {
             items: [
                 {
                     label: 'Tracker',
-                    icon: 'pi pi-fw pi-compass'
+                    icon: 'pi pi-fw pi-compass',
                 },
                 {
                     label: 'Map',
-                    icon: 'pi pi-fw pi-map-marker'
+                    icon: 'pi pi-fw pi-map-marker',
                 },
                 {
                     label: 'Manage',
-                    icon: 'pi pi-fw pi-pencil'
-                }
-            ]
+                    icon: 'pi pi-fw pi-pencil',
+                },
+            ],
         },
         {
             label: 'Profile',
@@ -197,43 +203,43 @@ const MenuDemo = ({ children }: any) => {
             items: [
                 {
                     label: 'Settings',
-                    icon: 'pi pi-fw pi-cog'
+                    icon: 'pi pi-fw pi-cog',
                 },
                 {
                     label: 'Billing',
-                    icon: 'pi pi-fw pi-file'
-                }
-            ]
+                    icon: 'pi pi-fw pi-file',
+                },
+            ],
         },
         {
-            separator: true
+            separator: true,
         },
         {
             label: 'Quit',
-            icon: 'pi pi-fw pi-sign-out'
-        }
+            icon: 'pi pi-fw pi-sign-out',
+        },
     ];
 
     const overlayMenuItems = [
         {
             label: 'Save',
-            icon: 'pi pi-save'
+            icon: 'pi pi-save',
         },
         {
             label: 'Update',
-            icon: 'pi pi-refresh'
+            icon: 'pi pi-refresh',
         },
         {
             label: 'Delete',
-            icon: 'pi pi-trash'
+            icon: 'pi pi-trash',
         },
         {
-            separator: true
+            separator: true,
         },
         {
             label: 'Home',
-            icon: 'pi pi-home'
-        }
+            icon: 'pi pi-home',
+        },
     ];
 
     const menuitems = [
@@ -242,49 +248,49 @@ const MenuDemo = ({ children }: any) => {
             items: [
                 {
                     label: 'New',
-                    icon: 'pi pi-fw pi-plus'
+                    icon: 'pi pi-fw pi-plus',
                 },
                 {
                     label: 'Edit',
-                    icon: 'pi pi-fw pi-user-edit'
-                }
-            ]
+                    icon: 'pi pi-fw pi-user-edit',
+                },
+            ],
         },
         {
             label: 'Orders',
             items: [
                 {
                     label: 'View',
-                    icon: 'pi pi-fw pi-list'
+                    icon: 'pi pi-fw pi-list',
                 },
                 {
                     label: 'Search',
-                    icon: 'pi pi-fw pi-search'
-                }
-            ]
-        }
+                    icon: 'pi pi-fw pi-search',
+                },
+            ],
+        },
     ];
 
     const contextMenuItems = [
         {
             label: 'Save',
-            icon: 'pi pi-save'
+            icon: 'pi pi-save',
         },
         {
             label: 'Update',
-            icon: 'pi pi-refresh'
+            icon: 'pi pi-refresh',
         },
         {
             label: 'Delete',
-            icon: 'pi pi-trash'
+            icon: 'pi pi-trash',
         },
         {
-            separator: true
+            separator: true,
         },
         {
             label: 'Options',
-            icon: 'pi pi-cog'
-        }
+            icon: 'pi pi-cog',
+        },
     ];
 
     const megamenuItems = [
@@ -295,24 +301,24 @@ const MenuDemo = ({ children }: any) => {
                 [
                     {
                         label: 'Woman',
-                        items: [{ label: 'Woman Item' }, { label: 'Woman Item' }, { label: 'Woman Item' }]
+                        items: [{ label: 'Woman Item' }, { label: 'Woman Item' }, { label: 'Woman Item' }],
                     },
                     {
                         label: 'Men',
-                        items: [{ label: 'Men Item' }, { label: 'Men Item' }, { label: 'Men Item' }]
-                    }
+                        items: [{ label: 'Men Item' }, { label: 'Men Item' }, { label: 'Men Item' }],
+                    },
                 ],
                 [
                     {
                         label: 'Kids',
-                        items: [{ label: 'Kids Item' }, { label: 'Kids Item' }]
+                        items: [{ label: 'Kids Item' }, { label: 'Kids Item' }],
                     },
                     {
                         label: 'Luggage',
-                        items: [{ label: 'Luggage Item' }, { label: 'Luggage Item' }, { label: 'Luggage Item' }]
-                    }
-                ]
-            ]
+                        items: [{ label: 'Luggage Item' }, { label: 'Luggage Item' }, { label: 'Luggage Item' }],
+                    },
+                ],
+            ],
         },
         {
             label: 'Electronics',
@@ -321,30 +327,30 @@ const MenuDemo = ({ children }: any) => {
                 [
                     {
                         label: 'Computer',
-                        items: [{ label: 'Computer Item' }, { label: 'Computer Item' }]
+                        items: [{ label: 'Computer Item' }, { label: 'Computer Item' }],
                     },
                     {
                         label: 'Camcorder',
-                        items: [{ label: 'Camcorder Item' }, { label: 'Camcorder Item' }, { label: 'Camcorder Item' }]
-                    }
+                        items: [{ label: 'Camcorder Item' }, { label: 'Camcorder Item' }, { label: 'Camcorder Item' }],
+                    },
                 ],
                 [
                     {
                         label: 'TV',
-                        items: [{ label: 'TV Item' }, { label: 'TV Item' }]
+                        items: [{ label: 'TV Item' }, { label: 'TV Item' }],
                     },
                     {
                         label: 'Audio',
-                        items: [{ label: 'Audio Item' }, { label: 'Audio Item' }, { label: 'Audio Item' }]
-                    }
+                        items: [{ label: 'Audio Item' }, { label: 'Audio Item' }, { label: 'Audio Item' }],
+                    },
                 ],
                 [
                     {
                         label: 'Sports.7',
-                        items: [{ label: 'Sports.7.1' }, { label: 'Sports.7.2' }]
-                    }
-                ]
-            ]
+                        items: [{ label: 'Sports.7.1' }, { label: 'Sports.7.2' }],
+                    },
+                ],
+            ],
         },
         {
             label: 'Furniture',
@@ -353,24 +359,24 @@ const MenuDemo = ({ children }: any) => {
                 [
                     {
                         label: 'Living Room',
-                        items: [{ label: 'Living Room Item' }, { label: 'Living Room Item' }]
+                        items: [{ label: 'Living Room Item' }, { label: 'Living Room Item' }],
                     },
                     {
                         label: 'Kitchen',
-                        items: [{ label: 'Kitchen Item' }, { label: 'Kitchen Item' }, { label: 'Kitchen Item' }]
-                    }
+                        items: [{ label: 'Kitchen Item' }, { label: 'Kitchen Item' }, { label: 'Kitchen Item' }],
+                    },
                 ],
                 [
                     {
                         label: 'Bedroom',
-                        items: [{ label: 'Bedroom Item' }, { label: 'Bedroom Item' }]
+                        items: [{ label: 'Bedroom Item' }, { label: 'Bedroom Item' }],
                     },
                     {
                         label: 'Outdoor',
-                        items: [{ label: 'Outdoor Item' }, { label: 'Outdoor Item' }, { label: 'Outdoor Item' }]
-                    }
-                ]
-            ]
+                        items: [{ label: 'Outdoor Item' }, { label: 'Outdoor Item' }, { label: 'Outdoor Item' }],
+                    },
+                ],
+            ],
         },
         {
             label: 'Sports',
@@ -379,21 +385,21 @@ const MenuDemo = ({ children }: any) => {
                 [
                     {
                         label: 'Basketball',
-                        items: [{ label: 'Basketball Item' }, { label: 'Basketball Item' }]
+                        items: [{ label: 'Basketball Item' }, { label: 'Basketball Item' }],
                     },
                     {
                         label: 'Football',
-                        items: [{ label: 'Football Item' }, { label: 'Football Item' }, { label: 'Football Item' }]
-                    }
+                        items: [{ label: 'Football Item' }, { label: 'Football Item' }, { label: 'Football Item' }],
+                    },
                 ],
                 [
                     {
                         label: 'Tennis',
-                        items: [{ label: 'Tennis Item' }, { label: 'Tennis Item' }]
-                    }
-                ]
-            ]
-        }
+                        items: [{ label: 'Tennis Item' }, { label: 'Tennis Item' }],
+                    },
+                ],
+            ],
+        },
     ];
 
     const panelMenuitems = [
@@ -407,19 +413,19 @@ const MenuDemo = ({ children }: any) => {
                     items: [
                         {
                             label: 'Customer',
-                            icon: 'pi pi-fw pi-plus'
+                            icon: 'pi pi-fw pi-plus',
                         },
                         {
                             label: 'Duplicate',
-                            icon: 'pi pi-fw pi-copy'
-                        }
-                    ]
+                            icon: 'pi pi-fw pi-copy',
+                        },
+                    ],
                 },
                 {
                     label: 'Edit',
-                    icon: 'pi pi-fw pi-user-edit'
-                }
-            ]
+                    icon: 'pi pi-fw pi-user-edit',
+                },
+            ],
         },
         {
             label: 'Orders',
@@ -427,13 +433,13 @@ const MenuDemo = ({ children }: any) => {
             items: [
                 {
                     label: 'View',
-                    icon: 'pi pi-fw pi-list'
+                    icon: 'pi pi-fw pi-list',
                 },
                 {
                     label: 'Search',
-                    icon: 'pi pi-fw pi-search'
-                }
-            ]
+                    icon: 'pi pi-fw pi-search',
+                },
+            ],
         },
         {
             label: 'Shipments',
@@ -441,17 +447,17 @@ const MenuDemo = ({ children }: any) => {
             items: [
                 {
                     label: 'Tracker',
-                    icon: 'pi pi-fw pi-compass'
+                    icon: 'pi pi-fw pi-compass',
                 },
                 {
                     label: 'Map',
-                    icon: 'pi pi-fw pi-map-marker'
+                    icon: 'pi pi-fw pi-map-marker',
                 },
                 {
                     label: 'Manage',
-                    icon: 'pi pi-fw pi-pencil'
-                }
-            ]
+                    icon: 'pi pi-fw pi-pencil',
+                },
+            ],
         },
         {
             label: 'Profile',
@@ -459,14 +465,14 @@ const MenuDemo = ({ children }: any) => {
             items: [
                 {
                     label: 'Settings',
-                    icon: 'pi pi-fw pi-cog'
+                    icon: 'pi pi-fw pi-cog',
                 },
                 {
                     label: 'Billing',
-                    icon: 'pi pi-fw pi-file'
-                }
-            ]
-        }
+                    icon: 'pi pi-fw pi-file',
+                },
+            ],
+        },
     ];
 
     const toggleMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -481,7 +487,10 @@ const MenuDemo = ({ children }: any) => {
         return (
             <span className="p-input-icon-left">
                 <i className="pi pi-search" />
-                <InputText type="text" placeholder="Search" />
+                <InputText
+                    type="text"
+                    placeholder="Search"
+                />
             </span>
         );
     };
@@ -491,21 +500,31 @@ const MenuDemo = ({ children }: any) => {
             <div className="col-12">
                 <div className="card">
                     <h5>Menubar</h5>
-                    <Menubar model={nestedMenuitems} end={menubarEndTemplate}></Menubar>
+                    <Menubar
+                        model={nestedMenuitems}
+                        end={menubarEndTemplate}></Menubar>
                 </div>
             </div>
 
             <div className="col-12">
                 <div className="card">
                     <h5>Breadcrumb</h5>
-                    <BreadCrumb home={breadcrumbHome} model={breadcrumbItems} />
+                    <BreadCrumb
+                        home={breadcrumbHome}
+                        model={breadcrumbItems}
+                    />
                 </div>
             </div>
 
             <div className="col-12 md:col-6">
                 <div className="card">
                     <h5>Steps</h5>
-                    <Steps model={wizardItems} activeIndex={activeIndex} onSelect={(e) => setActiveIndex(e.index)} readOnly={false} />
+                    <Steps
+                        model={wizardItems}
+                        activeIndex={activeIndex}
+                        onSelect={e => setActiveIndex(e.index)}
+                        readOnly={false}
+                    />
                     {pathname === '/uikit/menu' ? (
                         <div className="flex align-items-center py-5 px-3">
                             <i className="pi pi-fw pi-user mr-2 text-2xl" />
@@ -520,7 +539,11 @@ const MenuDemo = ({ children }: any) => {
             <div className="col-12 md:col-6">
                 <div className="card">
                     <h5>TabMenu</h5>
-                    <TabMenu model={wizardItems} activeIndex={activeIndex} onTabChange={(e) => setActiveIndex(e.index)} />
+                    <TabMenu
+                        model={wizardItems}
+                        activeIndex={activeIndex}
+                        onTabChange={e => setActiveIndex(e.index)}
+                    />
                     {pathname === '/uikit/menu' ? (
                         <div className="flex align-items-center py-5 px-3">
                             <i className="pi pi-fw pi-user mr-2 text-2xl" />
@@ -550,24 +573,47 @@ const MenuDemo = ({ children }: any) => {
                 <div className="card">
                     <h5>Overlay Menu</h5>
 
-                    <Menu ref={menu} model={overlayMenuItems} popup />
-                    <Button type="button" label="Options" icon="pi pi-angle-down" onClick={toggleMenu} style={{ width: 'auto' }} />
+                    <Menu
+                        ref={menu}
+                        model={overlayMenuItems}
+                        popup
+                    />
+                    <Button
+                        type="button"
+                        label="Options"
+                        icon="pi pi-angle-down"
+                        onClick={toggleMenu}
+                        style={{ width: 'auto' }}
+                    />
                 </div>
 
-                <div className="card" onContextMenu={onContextRightClick}>
+                <div
+                    className="card"
+                    onContextMenu={onContextRightClick}>
                     <h5>ContextMenu</h5>
                     Right click to display.
-                    <ContextMenu ref={contextMenu} model={contextMenuItems} breakpoint="767px" />
+                    <ContextMenu
+                        ref={contextMenu}
+                        model={contextMenuItems}
+                        breakpoint="767px"
+                    />
                 </div>
             </div>
 
             <div className="col-12 md:col-6">
                 <div className="card">
                     <h5>MegaMenu - Horizontal</h5>
-                    <MegaMenu model={megamenuItems} breakpoint="767px" />
+                    <MegaMenu
+                        model={megamenuItems}
+                        breakpoint="767px"
+                    />
 
                     <h5 style={{ marginTop: '1.55em' }}>MegaMenu - Vertical</h5>
-                    <MegaMenu model={megamenuItems} orientation="vertical" breakpoint="767px" />
+                    <MegaMenu
+                        model={megamenuItems}
+                        orientation="vertical"
+                        breakpoint="767px"
+                    />
                 </div>
             </div>
 
