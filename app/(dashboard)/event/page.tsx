@@ -55,7 +55,10 @@ export default function EventPage() {
                             </Form.Field>
                             <Form.Field className="col field">
                                 <Form.Label htmlFor="cpf">CPF</Form.Label>
-                                <Form.TextField name="cpf" />
+                                <Form.TextField
+                                    name="cpf"
+                                    mask="999.999.999-99"
+                                />
                                 <Form.ErrorMessage field="cpf" />
                             </Form.Field>
                         </div>
