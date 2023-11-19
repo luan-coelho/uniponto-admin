@@ -3,6 +3,7 @@ import { TextField } from './textfield';
 import { ErrorMessage } from './error-message';
 import { Field } from './field';
 import { DatePicker } from './date-picker';
+import { Select } from './select';
 
 export const Form = {
     Label,
@@ -10,4 +11,5 @@ export const Form = {
     ErrorMessage,
     Field,
     DatePicker,
+    Select,
 };

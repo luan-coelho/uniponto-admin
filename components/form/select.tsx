@@ -1,12 +1,12 @@
-import { Calendar, CalendarProps } from 'primereact/calendar';
+import { Dropdown, DropdownProps } from 'primereact/dropdown';
 import { Control, Controller, useFormContext } from 'react-hook-form';
 
-type DatePickerProps = CalendarProps & {
+type SelectProps = DropdownProps & {
     name: string;
     control: Control<any, any>;
 };
 
-export function DatePicker(props: DatePickerProps) {
+export function Select(props: SelectProps) {
     const {
         formState: { errors },
     } = useFormContext();
@@ -17,11 +17,11 @@ export function DatePicker(props: DatePickerProps) {
                 control={props.control}
                 name={props.name}
                 render={({ field }) => (
-                    <Calendar
+                    <Dropdown
                         className={errors[props.name] ? 'p-invalid' : ''}
+                        value={field}
+                        onChange={option => field.onChange(option)}
                         {...props}
-                        onChange={date => field.onChange(date)}
-                        onClearButtonClick={_ => field.onChange(undefined)}
                     />
                 )}
             />

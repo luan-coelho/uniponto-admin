@@ -8,10 +8,16 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { Form } from '../../../components/form';
 
+interface ITProfession {
+    name: string;
+    id: number;
+}
+
 export interface User {
     name: string;
     cpf: string;
     birthday: Date;
+    profession: ITProfession | undefined;
 }
 
 export default function EventPage() {
@@ -26,6 +32,9 @@ export default function EventPage() {
         }),
         birthday: z.date({
             required_error: 'A data de nascimento é obrigatória',
+        }),
+        profession: z.any({
+            required_error: 'A profissão é obrigatória',
         }),
     });
 
@@ -47,6 +56,14 @@ export default function EventPage() {
             life: 3000,
         });
     }
+
+    const profissions = [
+        { name: 'Desenvolvedor de Software', id: 1 },
+        { name: 'Analista de Sistemas', id: 2 },
+        { name: 'Administrador de Banco de Dados', id: 3 },
+        { name: 'Engenheiro de Redes', id: 4 },
+        { name: 'Cientista de Dados', id: 5 },
+    ];
 
     return (
         <>
@@ -72,10 +89,28 @@ export default function EventPage() {
                             <Form.Field className="col-2 field">
                                 <Form.Label htmlFor="birthday">Data de nascimento</Form.Label>
                                 <Form.DatePicker
-                                    name="birthday"
                                     control={control}
+                                    name="birthday"
+                                    showIcon
+                                    showButtonBar
+                                    dateFormat="dd/mm/yy"
                                 />
                                 <Form.ErrorMessage field="birthday" />
+                            </Form.Field>
+                        </div>
+
+                        <div className="grid gap-3 m-0">
+                            <Form.Field className="col field">
+                                <Form.Label htmlFor="profession">Profissão</Form.Label>
+                                <Form.Select
+                                    control={control}
+                                    name="profession"
+                                    options={profissions}
+                                    optionLabel="name"
+                                    optionValue="id"
+                                    placeholder="Selecione..."
+                                />
+                                <Form.ErrorMessage field="profession" />
                             </Form.Field>
                         </div>
 
