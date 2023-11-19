@@ -2,23 +2,31 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from 'primereact/button';
+import { Toast } from 'primereact/toast';
+import { useRef } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { Form } from '../../../components/form';
-import { useRef } from 'react';
-import { Toast } from 'primereact/toast';
 
 export interface User {
     name: string;
     cpf: string;
+    birthday: Date;
 }
 
 export default function EventPage() {
     const toast = useRef<Toast>(null);
 
     const schema = z.object({
-        name: z.string().min(1, 'O nome é obrigatório'),
-        cpf: z.string().min(1, 'O CPF é obrigatório'),
+        name: z.string().min(1, {
+            message: 'O nome é obrigatório',
+        }),
+        cpf: z.string().min(1, {
+            message: 'O CPF é obrigatório',
+        }),
+        birthday: z.date({
+            required_error: 'A data de nascimento é obrigatória',
+        }),
     });
 
     const createUserForm = useForm<User>({
@@ -26,7 +34,7 @@ export default function EventPage() {
         shouldUnregister: true,
     });
 
-    const { handleSubmit, reset } = createUserForm;
+    const { handleSubmit, control, reset } = createUserForm;
 
     async function createNewUser(user: User) {
         console.log(user);
@@ -60,6 +68,14 @@ export default function EventPage() {
                                     mask="999.999.999-99"
                                 />
                                 <Form.ErrorMessage field="cpf" />
+                            </Form.Field>
+                            <Form.Field className="col-2 field">
+                                <Form.Label htmlFor="birthday">Data de nascimento</Form.Label>
+                                <Form.DatePicker
+                                    name="birthday"
+                                    control={control}
+                                />
+                                <Form.ErrorMessage field="birthday" />
                             </Form.Field>
                         </div>
 
