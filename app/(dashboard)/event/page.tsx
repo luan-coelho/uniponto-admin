@@ -74,17 +74,17 @@ export default function EventPage() {
     return (
         <>
             <div className="card">
-                <Toast ref={toast} />
+                {/* <Toast ref={toast} /> */}
                 <h5>Cadastrar evento</h5>
                 <FormProvider {...createUserForm}>
                     <form onSubmit={handleSubmit(createNewUser)}>
                         <div className="grid gap-3 m-0">
-                            <Form.Field className="col field">
+                            <Form.Field>
                                 <Form.Label htmlFor="name">Nome</Form.Label>
                                 <Form.TextField name="name" />
                                 <Form.ErrorMessage field="name" />
                             </Form.Field>
-                            <Form.Field className="col field">
+                            <Form.Field>
                                 <Form.Label htmlFor="cpf">CPF</Form.Label>
                                 <Form.TextField
                                     name="cpf"
@@ -92,7 +92,7 @@ export default function EventPage() {
                                 />
                                 <Form.ErrorMessage field="cpf" />
                             </Form.Field>
-                            <Form.Field className="col-2 field">
+                            <Form.Field className="col-2">
                                 <Form.Label htmlFor="birthday">Data de nascimento</Form.Label>
                                 <Form.DatePicker
                                     control={control}
@@ -106,7 +106,7 @@ export default function EventPage() {
                         </div>
 
                         <div className="grid gap-3 m-0">
-                            <Form.Field className="col field">
+                            <Form.Field>
                                 <Form.Label htmlFor="profession">Profissão</Form.Label>
                                 <Form.Select
                                     control={control}

@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Layout from '../../layout/layout';
+import { ToastProvider } from '../../layout/context/toastcontext';
 
 export const metadata: Metadata = {
     title: 'UniPonto',
@@ -12,5 +13,9 @@ export const metadata: Metadata = {
 };
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
-    return <Layout>{children}</Layout>;
+    return (
+        <Layout>
+            <ToastProvider>{children}</ToastProvider>
+        </Layout>
+    );
 }

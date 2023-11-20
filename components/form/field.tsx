@@ -5,8 +5,8 @@ interface FieldProps extends HTMLAttributes<HTMLDivElement> {}
 export function Field(props: FieldProps) {
     return (
         <div
-            className="field"
             {...props}
+            className="col field"
         />
     );
 }

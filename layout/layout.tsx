@@ -12,6 +12,8 @@ import { LayoutContext } from './context/layoutcontext';
 import { PrimeReactContext } from 'primereact/api';
 import { ChildContainerProps, LayoutState, AppTopbarRef } from '../types/types';
 import { usePathname, useSearchParams } from 'next/navigation';
+import { Toast } from 'primereact/toast';
+import { useToast } from './context/toastcontext';
 
 const Layout = ({ children }: ChildContainerProps) => {
     const { layoutConfig, layoutState, setLayoutState } = useContext(LayoutContext);
@@ -118,6 +120,8 @@ const Layout = ({ children }: ChildContainerProps) => {
         unbindProfileMenuOutsideClickListener();
     });
 
+    // const { toast } = useToast();
+
     const containerClass = classNames('layout-wrapper', {
         'layout-overlay': layoutConfig.menuMode === 'overlay',
         'layout-static': layoutConfig.menuMode === 'static',
@@ -131,6 +135,7 @@ const Layout = ({ children }: ChildContainerProps) => {
     return (
         <>
             <div className={containerClass}>
+                {/* <Toast ref={toast} /> */}
                 <AppTopbar ref={topbarRef} />
                 <div
                     ref={sidebarRef}
