@@ -23,26 +23,23 @@ export interface User {
 export default function EventPage() {
     const toast = useRef<Toast>(null);
 
-    const schema = z
-        .object({
-            name: z.string().min(1, {
-                message: 'O nome é obrigatório',
-            }),
-            cpf: z.string().min(1, {
-                message: 'O CPF é obrigatório',
-            }),
-            birthday: z.date({
-                required_error: 'A data de nascimento é obrigatória',
-            }),
-            profession: z.object({
-                id: z.number({
-                    required_error: 'Informe a profissão',
-                }),
-            }),
-        })
-        .refine(data => {
-            data.birthday;
-        });
+    const schema = z.object({
+        name: z.string().min(1, {
+            message: 'O nome é obrigatório',
+        }),
+        cpf: z.string().min(1, {
+            message: 'O CPF é obrigatório',
+        }),
+        birthday: z.date({
+            required_error: 'A data de nascimento é obrigatória',
+        }),
+        profession: z.any().refine(profession => {
+            if (profession == undefined) {
+                return false;
+            }
+            return true;
+        }, 'Informe a profissão'),
+    });
 
     const createUserForm = useForm<User>({
         resolver: zodResolver(schema),
