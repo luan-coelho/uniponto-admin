@@ -4,6 +4,7 @@ import { Control, Controller, useFormContext } from 'react-hook-form';
 type SelectProps = DropdownProps & {
     name: string;
     control: Control<any, any>;
+    propertyValue?: string;
 };
 
 export function Select(props: SelectProps) {
@@ -18,9 +19,13 @@ export function Select(props: SelectProps) {
                 name={props.name}
                 render={({ field }) => (
                     <Dropdown
-                        className={errors[props.name] ? 'p-invalid' : ''}
-                        value={field}
-                        onChange={option => field.onChange(option)}
+                        className={
+                            errors[props.name] || (props.propertyValue ? errors[props.propertyValue!] : false)
+                                ? 'p-invalid'
+                                : ''
+                        }
+                        onChange={option => field.onChange(option.value)}
+                        value={field.value}
                         {...props}
                     />
                 )}

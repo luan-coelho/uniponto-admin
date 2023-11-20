@@ -8,35 +8,41 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { Form } from '../../../components/form';
 
-interface ITProfession {
-    name: string;
+export interface ITProfession {
     id: number;
+    description: string;
 }
 
 export interface User {
     name: string;
     cpf: string;
     birthday: Date;
-    profession: ITProfession | undefined;
+    profession: ITProfession;
 }
 
 export default function EventPage() {
     const toast = useRef<Toast>(null);
 
-    const schema = z.object({
-        name: z.string().min(1, {
-            message: 'O nome é obrigatório',
-        }),
-        cpf: z.string().min(1, {
-            message: 'O CPF é obrigatório',
-        }),
-        birthday: z.date({
-            required_error: 'A data de nascimento é obrigatória',
-        }),
-        profession: z.any({
-            required_error: 'A profissão é obrigatória',
-        }),
-    });
+    const schema = z
+        .object({
+            name: z.string().min(1, {
+                message: 'O nome é obrigatório',
+            }),
+            cpf: z.string().min(1, {
+                message: 'O CPF é obrigatório',
+            }),
+            birthday: z.date({
+                required_error: 'A data de nascimento é obrigatória',
+            }),
+            profession: z.object({
+                id: z.number({
+                    required_error: 'Informe a profissão',
+                }),
+            }),
+        })
+        .refine(data => {
+            data.birthday;
+        });
 
     const createUserForm = useForm<User>({
         resolver: zodResolver(schema),
@@ -58,12 +64,12 @@ export default function EventPage() {
     }
 
     const profissions = [
-        { name: 'Desenvolvedor de Software', id: 1 },
-        { name: 'Analista de Sistemas', id: 2 },
-        { name: 'Administrador de Banco de Dados', id: 3 },
-        { name: 'Engenheiro de Redes', id: 4 },
-        { name: 'Cientista de Dados', id: 5 },
-    ];
+        { description: 'Desenvolvedor de Software', id: 1 },
+        { description: 'Analista de Sistemas', id: 2 },
+        { description: 'Administrador de Banco de Dados', id: 3 },
+        { description: 'Engenheiro de Redes', id: 4 },
+        { description: 'Cientista de Dados', id: 5 },
+    ] as ITProfession[];
 
     return (
         <>
@@ -106,9 +112,9 @@ export default function EventPage() {
                                     control={control}
                                     name="profession"
                                     options={profissions}
-                                    optionLabel="name"
-                                    optionValue="id"
+                                    optionLabel="description"
                                     placeholder="Selecione..."
+                                    propertyValue="id"
                                 />
                                 <Form.ErrorMessage field="profession" />
                             </Form.Field>
