@@ -20,6 +20,11 @@ export interface User {
     profession: ITProfession;
 }
 
+export interface Gender {
+    id: number;
+    name: string;
+}
+
 export default function EventPage() {
     const toast = useRef<Toast>(null);
 
@@ -39,6 +44,12 @@ export default function EventPage() {
             }
             return true;
         }, 'Informe a profissão'),
+        gender: z.any().refine(gender => {
+            if (gender == undefined) {
+                return false;
+            }
+            return true;
+        }, 'Informe o sexo'),
     });
 
     const createUserForm = useForm<User>({
@@ -60,13 +71,19 @@ export default function EventPage() {
         });
     }
 
-    const profissions = [
+    const profissions: ITProfession[] = [
         { description: 'Desenvolvedor de Software', id: 1 },
         { description: 'Analista de Sistemas', id: 2 },
         { description: 'Administrador de Banco de Dados', id: 3 },
         { description: 'Engenheiro de Redes', id: 4 },
         { description: 'Cientista de Dados', id: 5 },
-    ] as ITProfession[];
+    ];
+
+    const genders: Gender[] = [
+        { id: 1, name: 'Masculino' },
+        { id: 2, name: 'Feminino' },
+        { id: 3, name: 'Não Binário' },
+    ];
 
     return (
         <>
@@ -114,6 +131,20 @@ export default function EventPage() {
                                     propertyValue="id"
                                 />
                                 <Form.ErrorMessage field="profession" />
+                            </Form.Field>
+                        </div>
+
+                        <div className="grid gap-3 m-0">
+                            <Form.Field>
+                                <Form.Label htmlFor="gender">Sexo</Form.Label>
+                                <Form.MultiRadioButton
+                                    control={control}
+                                    name="gender"
+                                    options={genders}
+                                    optionLabel="name"
+                                    optionValue="id"
+                                />
+                                <Form.ErrorMessage field="gender" />
                             </Form.Field>
                         </div>
 
