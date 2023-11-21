@@ -21,7 +21,7 @@ export function MultiRadioButton(props: OptionButtonProps) {
                     return (
                         <div
                             key={index}
-                            className="col-12 md:col-4">
+                            className="col">
                             <div className="field-radiobutton">
                                 <Controller
                                     control={props.control}

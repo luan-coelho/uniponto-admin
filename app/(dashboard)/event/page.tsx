@@ -7,25 +7,13 @@ import { useRef } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { Form } from '../../../components/form';
-
-export interface ITProfession {
-    id: number;
-    description: string;
-}
-
-export interface User {
-    name: string;
-    cpf: string;
-    birthday: Date;
-    profession: ITProfession;
-}
-
-export interface Gender {
-    id: number;
-    name: string;
-}
+import { UserService } from '../../../demo/service/UserService';
+import { User } from '../../../types/types';
 
 export default function EventPage() {
+    const profissions = UserService.getProfissions();
+    const genders = UserService.getGenders();
+
     const toast = useRef<Toast>(null);
 
     const schema = z.object({
@@ -35,6 +23,14 @@ export default function EventPage() {
         cpf: z.string().min(1, {
             message: 'O CPF é obrigatório',
         }),
+        email: z
+            .string()
+            .min(1, {
+                message: 'O email é obrigatório',
+            })
+            .email({
+                message: 'Informe um email válido',
+            }),
         birthday: z.date({
             required_error: 'A data de nascimento é obrigatória',
         }),
@@ -71,20 +67,6 @@ export default function EventPage() {
         });
     }
 
-    const profissions: ITProfession[] = [
-        { description: 'Desenvolvedor de Software', id: 1 },
-        { description: 'Analista de Sistemas', id: 2 },
-        { description: 'Administrador de Banco de Dados', id: 3 },
-        { description: 'Engenheiro de Redes', id: 4 },
-        { description: 'Cientista de Dados', id: 5 },
-    ];
-
-    const genders: Gender[] = [
-        { id: 1, name: 'Masculino' },
-        { id: 2, name: 'Feminino' },
-        { id: 3, name: 'Não Binário' },
-    ];
-
     return (
         <>
             <div className="card">
@@ -98,6 +80,7 @@ export default function EventPage() {
                                 <Form.TextField name="name" />
                                 <Form.ErrorMessage field="name" />
                             </Form.Field>
+
                             <Form.Field>
                                 <Form.Label htmlFor="cpf">CPF</Form.Label>
                                 <Form.TextField
@@ -106,7 +89,30 @@ export default function EventPage() {
                                 />
                                 <Form.ErrorMessage field="cpf" />
                             </Form.Field>
+                        </div>
+
+                        <div className="grid gap-3 m-0">
+                            <Form.Field>
+                                <Form.Label htmlFor="email">Email</Form.Label>
+                                <Form.TextField name="email" />
+                                <Form.ErrorMessage field="email" />
+                            </Form.Field>
+
                             <Form.Field className="col-2">
+                                <Form.Label htmlFor="profession">Profissão</Form.Label>
+                                <Form.Select
+                                    control={control}
+                                    name="profession"
+                                    options={profissions}
+                                    optionLabel="description"
+                                    placeholder="Selecione..."
+                                />
+                                <Form.ErrorMessage field="profession" />
+                            </Form.Field>
+                        </div>
+
+                        <div className="grid gap-3 m-0">
+                            <Form.Field className="">
                                 <Form.Label htmlFor="birthday">Data de nascimento</Form.Label>
                                 <Form.DatePicker
                                     control={control}
@@ -117,24 +123,7 @@ export default function EventPage() {
                                 />
                                 <Form.ErrorMessage field="birthday" />
                             </Form.Field>
-                        </div>
 
-                        <div className="grid gap-3 m-0">
-                            <Form.Field>
-                                <Form.Label htmlFor="profession">Profissão</Form.Label>
-                                <Form.Select
-                                    control={control}
-                                    name="profession"
-                                    options={profissions}
-                                    optionLabel="description"
-                                    placeholder="Selecione..."
-                                    propertyValue="id"
-                                />
-                                <Form.ErrorMessage field="profession" />
-                            </Form.Field>
-                        </div>
-
-                        <div className="grid gap-3 m-0">
                             <Form.Field>
                                 <Form.Label htmlFor="gender">Sexo</Form.Label>
                                 <Form.MultiRadioButton
