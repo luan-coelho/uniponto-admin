@@ -7,14 +7,13 @@ import { useRef } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { Form } from '../../../components/form';
-import { UserService } from '../../../demo/service/UserService';
-import { User } from '../../../types/types';
+import { useFetch } from '../../../hooks/useFetch';
+import { Gender, ITProfession, User } from '../../../types/types';
 
 export default function EventPage() {
     const toast = useRef<Toast>(null);
-
-    const profissions = UserService.getProfissions();
-    const genders = UserService.getGenders();
+    const fetchProfessions = useFetch<ITProfession[]>('http://localhost:8080/professions');
+    const fetchGenders = useFetch<Gender[]>('http://localhost:8080/genders');
 
     const schema = z.object({
         name: z.string().min(1, 'O nome é obrigatório'),
@@ -79,9 +78,10 @@ export default function EventPage() {
                                 <Form.Select
                                     control={control}
                                     name="profession"
-                                    options={profissions}
+                                    options={fetchProfessions.data!}
                                     optionLabel="description"
                                     placeholder="Selecione..."
+                                    isLoading={fetchProfessions.isLoading}
                                 />
                                 <Form.ErrorMessage field="profession" />
                             </Form.Field>
@@ -105,9 +105,10 @@ export default function EventPage() {
                                 <Form.MultiRadioButton
                                     control={control}
                                     name="gender"
-                                    options={genders}
+                                    options={fetchGenders.data!}
                                     optionLabel="name"
                                     optionValue="id"
+                                    isLoading={fetchGenders.isLoading}
                                 />
                                 <Form.ErrorMessage field="gender" />
                             </Form.Field>

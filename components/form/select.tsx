@@ -5,6 +5,7 @@ type SelectProps = DropdownProps & {
     name: string;
     control: Control<any, any>;
     propertyValue?: string;
+    isLoading?: boolean;
 };
 
 export function Select(props: SelectProps) {
@@ -12,24 +13,30 @@ export function Select(props: SelectProps) {
         formState: { errors },
     } = useFormContext();
 
+    const { name, control, propertyValue, isLoading } = props;
+
     return (
         <>
-            <Controller
-                control={props.control}
-                name={props.name}
-                render={({ field }) => (
-                    <Dropdown
-                        className={
-                            errors[props.name] || (props.propertyValue ? errors[props.propertyValue!] : false)
-                                ? 'p-invalid'
-                                : ''
-                        }
-                        onChange={option => field.onChange(option.value)}
-                        value={field.value}
-                        {...props}
-                    />
-                )}
-            />
+            {!isLoading ? (
+                <Controller
+                    control={control}
+                    name={name}
+                    render={({ field }) => (
+                        <Dropdown
+                            className={
+                                errors[name] || (propertyValue ? errors[propertyValue!] : false) ? 'p-invalid' : ''
+                            }
+                            onChange={option => field.onChange(option.value)}
+                            value={field.value}
+                            {...props}
+                        />
+                    )}
+                />
+            ) : (
+                <div className="flex align-items-center gap-2">
+                    <i className="pi pi-spin pi-spinner"></i> Carregando...
+                </div>
+            )}
         </>
     );
 }

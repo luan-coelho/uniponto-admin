@@ -7,6 +7,7 @@ type OptionButtonProps = RadioButtonProps & {
     options: any[];
     optionLabel: string;
     optionValue: string;
+    isLoading?: boolean;
 };
 
 export function MultiRadioButton(props: OptionButtonProps) {
@@ -14,33 +15,41 @@ export function MultiRadioButton(props: OptionButtonProps) {
         formState: { errors },
     } = useFormContext();
 
+    const { name, control, options, optionLabel, optionValue, isLoading } = props;
+
     return (
         <>
-            <div className="grid">
-                {props.options.map((opt, index) => {
-                    return (
-                        <div key={index} className="col">
-                            <div className="field-radiobutton">
-                                <Controller
-                                    control={props.control}
-                                    name={props.name}
-                                    render={({ field }) => (
-                                        <RadioButton
-                                            inputId={`radio-button-${opt[props.optionLabel].toLowerCase()}`}
-                                            className={errors[props.name] ? 'p-invalid' : ''}
-                                            name={props.name}
-                                            value={opt}
-                                            checked={field.value === opt[props.optionValue]}
-                                            onChange={_ => field.onChange(opt[props.optionValue])}
-                                        />
-                                    )}
-                                />
-                                <label htmlFor={props.name}>{opt[props.optionLabel]}</label>
+            {!isLoading ? (
+                <div className="grid">
+                    {options.map((opt, index) => {
+                        return (
+                            <div key={index} className="col">
+                                <div className="field-radiobutton">
+                                    <Controller
+                                        control={control}
+                                        name={name}
+                                        render={({ field }) => (
+                                            <RadioButton
+                                                inputId={`radio-button-${opt[optionLabel].toLowerCase()}`}
+                                                className={errors[name] ? 'p-invalid' : ''}
+                                                name={name}
+                                                value={opt}
+                                                checked={field.value === opt[optionValue]}
+                                                onChange={_ => field.onChange(opt[optionValue])}
+                                            />
+                                        )}
+                                    />
+                                    <label htmlFor={name}>{opt[optionLabel]}</label>
+                                </div>
                             </div>
-                        </div>
-                    );
-                })}
-            </div>
+                        );
+                    })}
+                </div>
+            ) : (
+                <div className="flex align-items-center gap-2">
+                    <i className="pi pi-spin pi-spinner"></i> Carregando...
+                </div>
+            )}
         </>
     );
 }
