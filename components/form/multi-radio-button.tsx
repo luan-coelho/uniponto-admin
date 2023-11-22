@@ -19,9 +19,7 @@ export function MultiRadioButton(props: OptionButtonProps) {
             <div className="grid">
                 {props.options.map((opt, index) => {
                     return (
-                        <div
-                            key={index}
-                            className="col">
+                        <div key={index} className="col">
                             <div className="field-radiobutton">
                                 <Controller
                                     control={props.control}
@@ -31,7 +29,7 @@ export function MultiRadioButton(props: OptionButtonProps) {
                                             inputId={`radio-button-${opt[props.optionLabel].toLowerCase()}`}
                                             className={errors[props.name] ? 'p-invalid' : ''}
                                             name={props.name}
-                                            value={opt[props.optionValue]}
+                                            value={opt}
                                             checked={field.value === opt[props.optionValue]}
                                             onChange={_ => field.onChange(opt[props.optionValue])}
                                         />

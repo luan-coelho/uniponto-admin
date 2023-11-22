@@ -11,41 +11,20 @@ import { UserService } from '../../../demo/service/UserService';
 import { User } from '../../../types/types';
 
 export default function EventPage() {
+    const toast = useRef<Toast>(null);
+
     const profissions = UserService.getProfissions();
     const genders = UserService.getGenders();
 
-    const toast = useRef<Toast>(null);
-
     const schema = z.object({
-        name: z.string().min(1, {
-            message: 'O nome é obrigatório',
-        }),
-        cpf: z.string().min(1, {
-            message: 'O CPF é obrigatório',
-        }),
-        email: z
-            .string()
-            .min(1, {
-                message: 'O email é obrigatório',
-            })
-            .email({
-                message: 'Informe um email válido',
-            }),
+        name: z.string().min(1, 'O nome é obrigatório'),
+        cpf: z.string().min(1, 'O CPF é obrigatório'),
+        email: z.string().min(1, 'O email é obrigatório').email('Informe um email válido'),
         birthday: z.date({
             required_error: 'A data de nascimento é obrigatória',
         }),
-        profession: z.any().refine(profession => {
-            if (profession == undefined) {
-                return false;
-            }
-            return true;
-        }, 'Informe a profissão'),
-        gender: z.any().refine(gender => {
-            if (gender == undefined) {
-                return false;
-            }
-            return true;
-        }, 'Informe o sexo'),
+        profession: z.any().refine(p => p == !undefined, 'Informe a profissão'),
+        gender: z.any().refine(g => g == !undefined, 'Informe o sexo'),
     });
 
     const createUserForm = useForm<User>({
@@ -70,7 +49,7 @@ export default function EventPage() {
     return (
         <>
             <div className="card">
-                {/* <Toast ref={toast} /> */}
+                <Toast ref={toast} />
                 <h5>Cadastrar evento</h5>
                 <FormProvider {...createUserForm}>
                     <form onSubmit={handleSubmit(createNewUser)}>
@@ -83,10 +62,7 @@ export default function EventPage() {
 
                             <Form.Field>
                                 <Form.Label htmlFor="cpf">CPF</Form.Label>
-                                <Form.TextField
-                                    name="cpf"
-                                    mask="999.999.999-99"
-                                />
+                                <Form.TextField name="cpf" mask="999.999.999-99" />
                                 <Form.ErrorMessage field="cpf" />
                             </Form.Field>
                         </div>
@@ -138,10 +114,7 @@ export default function EventPage() {
                         </div>
 
                         <div className="flex align-items-center justify-content-end">
-                            <Button
-                                label="Cadastrar"
-                                type="submit"
-                            />
+                            <Button label="Cadastrar" type="submit" />
                         </div>
                     </form>
                 </FormProvider>
