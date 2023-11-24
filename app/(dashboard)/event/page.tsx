@@ -12,8 +12,8 @@ import { Gender, ITProfession, User } from '../../../types/types';
 
 export default function EventPage() {
     const toast = useRef<Toast>(null);
-    const fetchProfessions = useFetch<ITProfession[]>('http://localhost:8080/professions');
-    const fetchGenders = useFetch<Gender[]>('http://localhost:8080/genders');
+    const fetchProfessions = useFetch<ITProfession[]>('/professions');
+    const fetchGenders = useFetch<Gender[]>('/genders');
 
     const schema = z.object({
         name: z.string().min(1, { message: 'Informe o nome' }),
