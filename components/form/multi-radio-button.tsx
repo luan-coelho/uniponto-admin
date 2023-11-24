@@ -21,29 +21,33 @@ export function MultiRadioButton(props: OptionButtonProps) {
         <>
             {!isLoading ? (
                 <div className="grid">
-                    {options.map((opt, index) => {
-                        return (
-                            <div key={index} className="col">
-                                <div className="field-radiobutton">
-                                    <Controller
-                                        control={control}
-                                        name={name}
-                                        render={({ field }) => (
-                                            <RadioButton
-                                                inputId={`radio-button-${opt[optionLabel].toLowerCase()}`}
-                                                className={errors[name] ? 'p-invalid' : ''}
-                                                name={name}
-                                                value={opt}
-                                                checked={field.value === opt[optionValue]}
-                                                onChange={_ => field.onChange(opt[optionValue])}
-                                            />
-                                        )}
-                                    />
-                                    <label htmlFor={name}>{opt[optionLabel]}</label>
+                    {options &&
+                        options.map((opt, index) => {
+                            return (
+                                <div key={index} className="col">
+                                    <div className="field-radiobutton">
+                                        <Controller
+                                            control={control}
+                                            name={name}
+                                            render={({ field }) => (
+                                                <RadioButton
+                                                    inputId={`radio-button-${opt[optionLabel].toLowerCase()}`}
+                                                    className={errors[name] ? 'p-invalid' : ''}
+                                                    name={name}
+                                                    value={opt}
+                                                    checked={
+                                                        field.value != undefined &&
+                                                        field.value[optionValue] === opt[optionValue]
+                                                    }
+                                                    onChange={_ => field.onChange(opt)}
+                                                />
+                                            )}
+                                        />
+                                        <label htmlFor={name}>{opt[optionLabel]}</label>
+                                    </div>
                                 </div>
-                            </div>
-                        );
-                    })}
+                            );
+                        })}
                 </div>
             ) : (
                 <div className="flex align-items-center gap-2">

@@ -16,14 +16,14 @@ export default function EventPage() {
     const fetchGenders = useFetch<Gender[]>('http://localhost:8080/genders');
 
     const schema = z.object({
-        name: z.string().min(1, 'O nome é obrigatório'),
-        cpf: z.string().min(1, 'O CPF é obrigatório'),
-        email: z.string().min(1, 'O email é obrigatório').email('Informe um email válido'),
+        name: z.string().min(1, { message: 'Informe o nome' }),
+        cpf: z.string().min(1, { message: 'Informe o CPF' }),
+        email: z.string().min(1, { message: 'Informe o email' }).email({ message: 'Informe um email válido' }),
         birthday: z.date({
-            required_error: 'A data de nascimento é obrigatória',
+            required_error: 'Informe a data de nascimento',
         }),
-        profession: z.any().refine(p => p == !undefined, 'Informe a profissão'),
-        gender: z.any().refine(g => g == !undefined, 'Informe o sexo'),
+        profession: z.unknown().refine(p => p != undefined, { message: 'Informe a profissão' }),
+        gender: z.unknown().refine(g => g != undefined, { message: 'Informe o sexo' }),
     });
 
     const createUserForm = useForm<User>({
@@ -88,7 +88,7 @@ export default function EventPage() {
                         </div>
 
                         <div className="grid gap-3 m-0">
-                            <Form.Field className="">
+                            <Form.Field>
                                 <Form.Label htmlFor="birthday">Data de nascimento</Form.Label>
                                 <Form.DatePicker
                                     control={control}

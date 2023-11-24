@@ -13,7 +13,7 @@ export function Select(props: SelectProps) {
         formState: { errors },
     } = useFormContext();
 
-    const { name, control, propertyValue, isLoading } = props;
+    const { name, control, isLoading } = props;
 
     return (
         <>
@@ -23,9 +23,7 @@ export function Select(props: SelectProps) {
                     name={name}
                     render={({ field }) => (
                         <Dropdown
-                            className={
-                                errors[name] || (propertyValue ? errors[propertyValue!] : false) ? 'p-invalid' : ''
-                            }
+                            className={errors[name] ? 'p-invalid' : ''}
                             onChange={option => field.onChange(option.value)}
                             value={field.value}
                             {...props}
