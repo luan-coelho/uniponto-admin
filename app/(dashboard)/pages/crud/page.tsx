@@ -197,13 +197,7 @@ const Crud = () => {
         return (
             <React.Fragment>
                 <div className="my-2">
-                    <Button
-                        label="New"
-                        icon="pi pi-plus"
-                        severity="success"
-                        className=" mr-2"
-                        onClick={openNew}
-                    />
+                    <Button label="New" icon="pi pi-plus" severity="success" className=" mr-2" onClick={openNew} />
                     <Button
                         label="Delete"
                         icon="pi pi-trash"
@@ -226,12 +220,7 @@ const Crud = () => {
                     chooseLabel="Import"
                     className="mr-2 inline-block"
                 />
-                <Button
-                    label="Export"
-                    icon="pi pi-upload"
-                    severity="help"
-                    onClick={exportCSV}
-                />
+                <Button label="Export" icon="pi pi-upload" severity="help" onClick={exportCSV} />
             </React.Fragment>
         );
     };
@@ -290,11 +279,7 @@ const Crud = () => {
         return (
             <>
                 <span className="p-column-title">Reviews</span>
-                <Rating
-                    value={rowData.rating}
-                    readOnly
-                    cancel={false}
-                />
+                <Rating value={rowData.rating} readOnly cancel={false} />
             </>
         );
     };
@@ -320,12 +305,7 @@ const Crud = () => {
                     className="mr-2"
                     onClick={() => editProduct(rowData)}
                 />
-                <Button
-                    icon="pi pi-trash"
-                    rounded
-                    severity="warning"
-                    onClick={() => confirmDeleteProduct(rowData)}
-                />
+                <Button icon="pi pi-trash" rounded severity="warning" onClick={() => confirmDeleteProduct(rowData)} />
             </>
         );
     };
@@ -346,50 +326,20 @@ const Crud = () => {
 
     const productDialogFooter = (
         <>
-            <Button
-                label="Cancel"
-                icon="pi pi-times"
-                text
-                onClick={hideDialog}
-            />
-            <Button
-                label="Save"
-                icon="pi pi-check"
-                text
-                onClick={saveProduct}
-            />
+            <Button label="Cancel" icon="pi pi-times" text onClick={hideDialog} />
+            <Button label="Save" icon="pi pi-check" text onClick={saveProduct} />
         </>
     );
     const deleteProductDialogFooter = (
         <>
-            <Button
-                label="No"
-                icon="pi pi-times"
-                text
-                onClick={hideDeleteProductDialog}
-            />
-            <Button
-                label="Yes"
-                icon="pi pi-check"
-                text
-                onClick={deleteProduct}
-            />
+            <Button label="No" icon="pi pi-times" text onClick={hideDeleteProductDialog} />
+            <Button label="Yes" icon="pi pi-check" text onClick={deleteProduct} />
         </>
     );
     const deleteProductsDialogFooter = (
         <>
-            <Button
-                label="No"
-                icon="pi pi-times"
-                text
-                onClick={hideDeleteProductsDialog}
-            />
-            <Button
-                label="Yes"
-                icon="pi pi-check"
-                text
-                onClick={deleteSelectedProducts}
-            />
+            <Button label="No" icon="pi pi-times" text onClick={hideDeleteProductsDialog} />
+            <Button label="Yes" icon="pi pi-check" text onClick={deleteSelectedProducts} />
         </>
     );
 
@@ -398,10 +348,7 @@ const Crud = () => {
             <div className="col-12">
                 <div className="card">
                     <Toast ref={toast} />
-                    <Toolbar
-                        className="mb-4"
-                        left={leftToolbarTemplate}
-                        right={rightToolbarTemplate}></Toolbar>
+                    <Toolbar className="mb-4" left={leftToolbarTemplate} right={rightToolbarTemplate}></Toolbar>
 
                     <DataTable
                         ref={dt}
@@ -419,9 +366,7 @@ const Crud = () => {
                         emptyMessage="No products found."
                         header={header}
                         responsiveLayout="scroll">
-                        <Column
-                            selectionMode="multiple"
-                            headerStyle={{ width: '4rem' }}></Column>
+                        <Column selectionMode="multiple" headerStyle={{ width: '4rem' }}></Column>
                         <Column
                             field="code"
                             header="Code"
@@ -434,34 +379,22 @@ const Crud = () => {
                             sortable
                             body={nameBodyTemplate}
                             headerStyle={{ minWidth: '15rem' }}></Column>
-                        <Column
-                            header="Image"
-                            body={imageBodyTemplate}></Column>
-                        <Column
-                            field="price"
-                            header="Price"
-                            body={priceBodyTemplate}
-                            sortable></Column>
+                        <Column header="Image" body={imageBodyTemplate}></Column>
+                        <Column field="price" header="Price" body={priceBodyTemplate} sortable></Column>
                         <Column
                             field="category"
                             header="Category"
                             sortable
                             body={categoryBodyTemplate}
                             headerStyle={{ minWidth: '10rem' }}></Column>
-                        <Column
-                            field="rating"
-                            header="Reviews"
-                            body={ratingBodyTemplate}
-                            sortable></Column>
+                        <Column field="rating" header="Reviews" body={ratingBodyTemplate} sortable></Column>
                         <Column
                             field="inventoryStatus"
                             header="Status"
                             body={statusBodyTemplate}
                             sortable
                             headerStyle={{ minWidth: '10rem' }}></Column>
-                        <Column
-                            body={actionBodyTemplate}
-                            headerStyle={{ minWidth: '10rem' }}></Column>
+                        <Column body={actionBodyTemplate} headerStyle={{ minWidth: '10rem' }}></Column>
                     </DataTable>
 
                     <Dialog
@@ -583,10 +516,7 @@ const Crud = () => {
                         footer={deleteProductDialogFooter}
                         onHide={hideDeleteProductDialog}>
                         <div className="flex align-items-center justify-content-center">
-                            <i
-                                className="pi pi-exclamation-triangle mr-3"
-                                style={{ fontSize: '2rem' }}
-                            />
+                            <i className="pi pi-exclamation-triangle mr-3" style={{ fontSize: '2rem' }} />
                             {product && (
                                 <span>
                                     Are you sure you want to delete <b>{product.name}</b>?
@@ -603,10 +533,7 @@ const Crud = () => {
                         footer={deleteProductsDialogFooter}
                         onHide={hideDeleteProductsDialog}>
                         <div className="flex align-items-center justify-content-center">
-                            <i
-                                className="pi pi-exclamation-triangle mr-3"
-                                style={{ fontSize: '2rem' }}
-                            />
+                            <i className="pi pi-exclamation-triangle mr-3" style={{ fontSize: '2rem' }} />
                             {product && <span>Are you sure you want to delete the selected products?</span>}
                         </div>
                     </Dialog>
