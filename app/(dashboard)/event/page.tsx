@@ -19,9 +19,7 @@ export default function EventPage() {
         name: z.string().min(1, { message: 'Informe o nome' }),
         cpf: z.string().min(1, { message: 'Informe o CPF' }),
         email: z.string().min(1, { message: 'Informe o email' }).email({ message: 'Informe um email válido' }),
-        birthday: z.date({
-            required_error: 'Informe a data de nascimento',
-        }),
+        birthday: z.date({ required_error: 'Informe a data de nascimento' }),
         profession: z.unknown().refine(p => p != undefined, { message: 'Informe a profissão' }),
         gender: z.unknown().refine(g => g != undefined, { message: 'Informe o sexo' }),
     });
