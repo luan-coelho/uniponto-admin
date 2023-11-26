@@ -12,9 +12,9 @@ import { useRef, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { Form } from '../../../../components/form';
-import api from '../../../../demo/service/api';
 import { useFetch } from '../../../../hooks/useFetch';
 import { ITProfession } from '../../../../types/types';
+import api from '../../../../services/api';
 
 export default function ITProfessionCreatePage() {
     const [globalFilter, setGlobalFilter] = useState<string>('');

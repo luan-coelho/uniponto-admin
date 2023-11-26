@@ -1,5 +1,5 @@
 import useSWR, { SWRResponse, SWRConfiguration } from 'swr';
-import api from '../demo/service/api';
+import api from '../services/api';
 
 function useFetch<Data = any, Error = any>(url: string, swrConfiguration?: SWRConfiguration) {
     return useSWR<Data, Error>(

@@ -7,13 +7,16 @@ import { useRef } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { Form } from '../../../components/form';
-import { useFetch } from '../../../hooks/useFetch';
-import { Gender, ITProfession, User } from '../../../types/types';
+import GenderService from '../../../services/GenderService';
+import ITProfessionService from '../../../services/ITProfessionService';
+import { User } from '../../../types/types';
 
 export default function EventPage() {
     const toast = useRef<Toast>(null);
-    const fetchProfessions = useFetch<ITProfession[]>('/professions');
-    const fetchGenders = useFetch<Gender[]>('/genders');
+    const itProfessionService = new ITProfessionService();
+    const genderService = new GenderService();
+    const fetchProfessions = itProfessionService.findAll();
+    const fetchGenders = genderService.findAll();
 
     const schema = z.object({
         name: z.string().min(1, { message: 'Informe o nome' }),
